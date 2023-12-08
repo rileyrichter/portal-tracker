@@ -1,0 +1,27 @@
+---
+// Example usage in an Astro page
+import fetchPlayersData from "../utils/fetchPlayersData.js";
+import PlayerCard from "../components/PlayerCard.astro";
+import Layout from "../layouts/Layout.astro";
+
+let sheetName = "DEF"; // Or "DEF" for another page
+let pageName = "Defensive players"; // Or "Defense" for another page
+let playersData = await fetchPlayersData(sheetName);
+//console.log(playersData);
+---
+
+<Layout title={pageName}>
+    <section class="section">
+      <div class="container">
+        <h1>{pageName}</h1>
+        <p class="u-mb-600">Biggest needs: LB, ED/DE, DT/DL, & CB.</p>
+        <div class="row">
+          {
+            playersData.map((player, index) => (
+              <PlayerCard key={index} player={player} />
+            ))
+          }
+        </div>
+      </div>
+    </section>
+</Layout>

@@ -1,0 +1,146 @@
+---
+
+---
+
+<nav>
+    <div class="container">
+        <div class="row justify-space-around align-center">
+            <div class="col shrink u-mb-0">
+                <h1 class="h4 u-mb-0" data-nav="brand">Stoops Bros Portal Tracker</h1>
+            </div>
+            <div class="col u-mb-0" data-nav="menu">
+                <ul class="nav-list">
+                    <li role="presentation" class="nav-list-item"><a href="/" class="nav-link">Offense</a></li>
+                    <li role="presentation" class="nav-list-item"><a href="/defense" class="nav-link">Defense</a></li>
+                    <li role="presentation" class="nav-list-item"><a href="/primary" class="nav-link">Primary Targets</a></li>
+                    <li role="presentation" class="nav-list-item"><a href="/commits" class="nav-link">Committed</a></li>
+                    <li role="presentation" class="nav-list-item"><a href="/sooners-in-portal" class="nav-link">Sooners in Portal</a></li>
+                    <li role="presentation" class="nav-list-item"><a href="/committed-elsewhere" class="nav-link">Committed Elsewhere</a></li>
+                </ul>
+                <button class="hamburger-menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<style>
+    nav {
+        padding: 2rem 0;
+        border-bottom: 1px solid var(--clr--neutral-400);
+        position: relative;
+    }
+
+    .hamburger-menu {
+        display: none;
+    }
+    
+    .nav-list {
+        display: flex;
+        justify-content: flex-end;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-link {
+        text-decoration: none;
+        font-weight: 700;
+    }
+    @media screen and (max-width: 991px) {
+        [data-nav="menu"] {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+
+        .nav-list {
+            flex-direction: column;
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            padding: 2rem 0 2rem 0;
+            background-color: var(--clr--neutral-100);
+            border-bottom: 1px solid var(--clr--neutral-400);
+            box-shadow: 0 1rem 0.5rem rgba(0,0,0,.1);
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            &.active {
+                display: flex;
+                opacity: 1;
+            }
+        }
+
+        .nav-list-item {
+            margin-bottom: 1rem;
+        }
+
+        .hamburger-menu {
+            background-color: var(--clr--neutral-400);
+            border: 1 px solid var(--clr--neutral-900);
+            border-radius: var(--border--radius);
+            cursor: pointer;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            gap: .25rem;
+            width: 50px; /* Adjust size as needed */
+            height: auto; /* Adjust size as needed */
+        }
+
+        .hamburger-menu:focus-visible {
+            border-radius: var(--border--radius);
+            outline-color: var(--clr--primary-400);
+            outline-offset: 3px;
+            outline-width: 3px;
+            outline-style: solid;
+        }
+
+        .hamburger-line {
+            display: block;
+            width: 100%;
+            height: 2px; /* Adjust thickness as needed */
+            background-color: var(--clr--neutral-900); /* Adjust color as needed */
+        }
+    }
+
+    @media screen and (max-width: 991px) {
+        [data-nav="brand"] {
+            font-size: 0.8rem;
+        }
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const nav = document.querySelector('nav');
+    const navList = document.querySelector('.nav-list');
+    
+    if (window.innerWidth <= 991) {
+        navList.style.top = `${nav.offsetHeight}px`;
+    }
+
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+            link.classList.add('active');
+        }
+    });
+
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    
+    hamburgerMenu.addEventListener('click', function() {
+        navList.classList.toggle('active');
+    });
+});
+</script>
+    
+    

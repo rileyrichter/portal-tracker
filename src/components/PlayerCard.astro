@@ -1,0 +1,100 @@
+---
+const player = Astro.props.player;
+---
+
+<div class="col lg-4 md-6 sm-12">
+  <div class="player-card">
+    <h2 class="h3 u-mb-0">
+      {player["Primary Targets Name"] || player["Name"]}
+    </h2>
+    <p class="p-300 u-mb-0">
+      {player["Position"] && player["Position"] !== "-" ? (
+        <span>{player["Position"]}</span>
+      ) : null}
+      {
+        player["Height"] && player["Height"] !== "-" ? (
+          <span>&bull; {player["Height"]}</span>
+          ) :null 
+      } 
+      {player["Weight"] && player["Weight"] !== "-" ? (
+        <span>&bull; {player["Weight"]}</span>
+          ) :null 
+      } 
+      {player["Departing School"] && player["Departing School"] !== "-" ? (
+        <span>&bull; {player["Departing School"]}</span>
+          ) :null
+      }
+    </p>
+    <div class="p-300 u-mb-400">
+      {player["Twitter (X)"] && (
+        <a href={`https://twitter.com/${player["Twitter (X)"]}`} target="_blank">Twitter (X)</a>
+      )}
+    
+      {player["Twitter (X)"] && player.IG && ' • '}
+    
+      {player.IG && (
+        <a href={`https://instagram.com/${player.IG}`} target="_blank">Insta</a>
+      )}
+    </div>
+    {
+      player["YOE"] && player["YOE"] !== "-" ? (
+        <p class="h4">Years of Experience: {player["YOE"]}</p>
+      ) : null
+    }    
+    {
+      player.Stats && player.Stats !== "-" ? (
+        <p class="h4 u-mb-0">Player Notes:</p>
+        <p>{player.Stats}</p>
+      ) : null
+    }
+    {
+      player.Notes && player.Notes !== "-" ? (
+        <p class="h4 u-mb-0">Player Notes:</p>
+        <p>{player.Notes}</p>
+      ) : null
+    }
+    {
+      player["OU Offer"] && player["OU Offer"] !== "-" ? (
+        <p class="highlight">OU offered on {player["OU Offer"]}</p>
+      ) : null
+    }
+    {
+      player["Prediction"] && player["Prediction"] !== "-" ? (
+        <p class="highlight prediction">Prediction: {player["Prediction"]}</p>
+      ) : null
+    }
+    {
+      player["To"] && player["To"] !== "-" ? (
+        <p class="highlight prediction">Committed to: {player["To"]}</p>
+      ) : null
+    }
+    {
+      player["Committed To"] && player["Committed To"] !== "-" ? (
+        <p class="highlight">Committed to {player["Committed To"]}</p>
+      ) : null
+    }
+  </div>
+</div>
+
+<style>
+  .player-card {
+    padding: var(--spacing--500);
+    border: 1px solid var(--clr--neutral-700);
+    border-radius: var(--border--radius);#323232
+    position: relative;
+    height: 100%;
+  }
+
+  .highlight {
+    background-color: var(--clr--primary-400);
+    color: var(--clr--neutral-100);
+    padding: 0.5rem;
+    border-radius: var(--border--radius);
+    text-align: center;
+  }
+
+  .highlight.prediction {
+    background-color: var(--clr--neutral-900);
+    color: var(--clr--neutral-100);
+  }
+</style>
